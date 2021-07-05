@@ -65,21 +65,22 @@ bool HashMapSolution::isHappy(int n) {
     return false;
 }
 
-<<<<<<< HEAD
 bool HashMapSolution::containsNearbyDuplicate(vector<int> &nums, int k) {
     unordered_set<int> set;
     for (int i = 0; i < nums.size(); ++i) {
-        if (set.count(nums[i]) > 0){
+        if (set.count(nums[i]) > 0) {
             return true;
         }
         set.insert(nums[i]);
-        if (set.size() > k){
-            set.erase(nums[i-k]);
+        if (set.size() > k) {
+            set.erase(nums[i - k]);
         }
     }
 
     return false;
-=======
+
+}
+
 vector<int> HashMapSolution::twoSum(vector<int> &nums, int target) {
     unordered_map<int, int> map;
     for (int i = 0; i < nums.size(); ++i) {
@@ -143,5 +144,4 @@ vector<string> HashMapSolution::findRestaurant(vector<string> &list1, vector<str
         }
     }
     return indexSum2CharMap.at(minIndexSum);
->>>>>>> origin/ac_local
 }

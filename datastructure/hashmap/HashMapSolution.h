@@ -16,16 +16,15 @@ public:
     int singleNumber(vector<int>& nums) ;
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2);
     bool isHappy(int n);
-<<<<<<< HEAD
     bool containsNearbyDuplicate(vector<int>& nums, int k) ;
-=======
+
 
     vector<int> twoSum(vector<int>& nums, int target);
 
     bool isIsomorphic(string s, string t);
 
     vector<string> findRestaurant(vector<string>& list1, vector<string>& list2);
->>>>>>> origin/ac_local
+
 };
 
 
