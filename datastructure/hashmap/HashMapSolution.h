@@ -21,7 +21,7 @@ public:
 
     bool isIsomorphic(string s, string t);
 
-    vector<string> findRestaurant(vector<string>& list1, vector<string>& list2)
+    vector<string> findRestaurant(vector<string>& list1, vector<string>& list2);
 };
 
 

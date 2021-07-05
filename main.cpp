@@ -1,15 +1,17 @@
 #include <iostream>
 #include <string>
-#include "datastructure/hashmap/HashMapSolution.h"
+#include <vector>
+#include "leetcode/algorithms/AlgorithmsBasic.h"
 
 using namespace  std;
 
 int main() {
-    HashMapSolution hashMapSolution;
+    AlgorithmsBasic algorithmsBasic;
 
-    string s1 = "foo";
-    string s2 = "bar";
-    cout << hashMapSolution.isIsomorphic(s1, s2)<<endl;
+    vector<int> nums = {1,3,5,6};
+    int target = 0;
+
+    cout << algorithmsBasic.searchInsert(nums, target)<<endl;
 
     return 0;
 }
