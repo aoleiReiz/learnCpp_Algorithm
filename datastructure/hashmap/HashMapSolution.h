@@ -16,6 +16,7 @@ public:
     int singleNumber(vector<int>& nums) ;
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2);
     bool isHappy(int n);
+    bool containsNearbyDuplicate(vector<int>& nums, int k) ;
 };
 
 
