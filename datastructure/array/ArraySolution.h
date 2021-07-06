@@ -13,6 +13,8 @@ public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n);
     //https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2);
+    //https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/
+    int maxProfit(vector<int>& prices);
 };
 
 

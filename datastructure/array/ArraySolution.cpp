@@ -50,3 +50,18 @@ vector<int> ArraySolution::intersect(vector<int> &nums1, vector<int> &nums2) {
 
     return res;
 }
+
+int ArraySolution::maxProfit(vector<int> &prices) {
+    int curMin = INT_MAX;
+    int ret = -1000000;
+    for (int i : prices) {
+        if (i - curMin > ret){
+            ret = i - curMin;
+        }
+        if (i < curMin){
+            curMin = i;
+        }
+    }
+
+    return ret;
+}
