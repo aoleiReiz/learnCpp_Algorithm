@@ -11,11 +11,17 @@ using namespace std;
 
 class AlgorithmsBasic {
 
+private:
+    void reverseArray(vector<int> &arr, int left, int right);
 public:
     //https://leetcode-cn.com/problems/binary-search/
     int search(vector<int>& nums, int target);
     //https://leetcode-cn.com/problems/search-insert-position/
     int searchInsert(vector<int>& nums, int target);
+    //https://leetcode-cn.com/problems/squares-of-a-sorted-array/
+    vector<int> sortedSquares(vector<int>& nums);
+    //https://leetcode-cn.com/problems/rotate-array/
+    void rotate(vector<int>& nums, int k);
 };
 
 

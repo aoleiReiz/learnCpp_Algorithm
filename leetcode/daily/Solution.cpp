@@ -86,3 +86,65 @@ TreeNode *Solution::sufficientSubsetHelper(TreeNode *node, int limit, int cur) {
     }
     return node;
 }
+
+bool compareStringInteger(string s1, string s2) {
+    return stoi(s1) < stoi(s2);
+}
+
+vector<vector<string>> Solution::displayTable(vector<vector<string>> &orders) {
+    unordered_map<string, unordered_map<string, int>> orderCountMap;
+    vector<string> tables;
+    vector<string> foods;
+    unordered_set<string>tableSet;
+    unordered_set<string>foodSet;
+
+    for(vector<string> &order : orders){
+        string table = order[1];
+        string food = order[2];
+        if (tableSet.count(table)<= 0){
+            tables.push_back(table);
+            tableSet.insert(table);
+        }
+        if (foodSet.count(food) <= 0){
+            foods.push_back(food);
+            foodSet.insert(food);
+        }
+
+        if (orderCountMap.count(table) > 0){
+            if (orderCountMap[table].count(food) > 0){
+                orderCountMap[table][food] += 1;
+            }else{
+                orderCountMap[table].insert(make_pair(food, 1));
+            }
+        }else{
+            orderCountMap[table] = unordered_map<string, int>();
+            orderCountMap[table].insert(make_pair(food, 1));
+        }
+    }
+
+    sort(tables.begin(), tables.end(), compareStringInteger);
+    sort(foods.begin(), foods.end());
+    vector<vector<string>>res;
+    vector<string> header;
+    header.push_back("Table");
+    for(string &food : foods){
+        header.push_back(food);
+    }
+    res.push_back(header);
+
+    for(string &table : tables){
+        vector<string> row;
+        row.push_back(table);
+        for (string &food : foods) {
+            if (orderCountMap[table].count(food) <= 0){
+                row.push_back(to_string(0));
+            }else{
+                row.push_back(to_string(orderCountMap[table][food]));
+            }
+        }
+        res.push_back(row);
+    }
+    return res;
+}
+
+

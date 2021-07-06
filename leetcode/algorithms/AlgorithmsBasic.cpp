@@ -4,6 +4,7 @@
 
 #include "AlgorithmsBasic.h"
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 
@@ -37,4 +38,35 @@ int AlgorithmsBasic::searchInsert(vector<int> &nums, int target) {
         }
     }
     return left;
+}
+
+vector<int> AlgorithmsBasic::sortedSquares(vector<int> &nums) {
+    vector<int>res;
+    for(int &i : nums){
+        res.push_back( i * i);
+    }
+    sort(res.begin(), res.end());
+    return res;
+}
+
+void AlgorithmsBasic::rotate(vector<int> &nums, int k) {
+    int n = nums.size();
+    if (n <= 1){
+        return;
+    }
+    k = k % n;
+    reverseArray(nums, 0, n-1);
+    reverseArray(nums, 0, k-1);
+    reverseArray(nums, k, n-1);
+
+}
+
+void AlgorithmsBasic::reverseArray(vector<int> &arr, int left, int right) {
+    while (left <= right){
+        int temp = arr[right];
+        arr[right] = arr[left];
+        arr[left] = temp;
+        left ++;
+        right --;
+    }
 }

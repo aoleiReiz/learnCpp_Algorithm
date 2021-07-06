@@ -5,6 +5,11 @@
 #ifndef LEARNCPP_ALGORITHM_SOLUTION_H
 #define LEARNCPP_ALGORITHM_SOLUTION_H
 #include <vector>
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+
 using  namespace std;
 
 /**
@@ -26,6 +31,7 @@ public:
     int dfsCount(vector<int>characterCount);
     TreeNode* sufficientSubset(TreeNode* root, int limit);//https://leetcode-cn.com/problems/insufficient-nodes-in-root-to-leaf-paths/
     TreeNode* sufficientSubsetHelper(TreeNode* node, int limit, int cur);
+    vector<vector<string>> displayTable(vector<vector<string>>& orders);
 };
 
 
