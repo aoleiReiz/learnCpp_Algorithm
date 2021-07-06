@@ -22,6 +22,10 @@ public:
     vector<int> sortedSquares(vector<int>& nums);
     //https://leetcode-cn.com/problems/rotate-array/
     void rotate(vector<int>& nums, int k);
+    //https://leetcode-cn.com/problems/move-zeroes/
+    void moveZeroes(vector<int>& nums);
+    //https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/
+    vector<int> twoSum(vector<int>& numbers, int target);
 };
 
 

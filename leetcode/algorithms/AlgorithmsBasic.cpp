@@ -70,3 +70,30 @@ void AlgorithmsBasic::reverseArray(vector<int> &arr, int left, int right) {
         right --;
     }
 }
+
+void AlgorithmsBasic::moveZeroes(vector<int> &nums) {
+    int k = 0;
+    for (int i = 0; i < nums.size(); ++i) {
+        if (nums[i] != 0){
+            nums[k++] = nums[i];
+        }
+    }
+    while (k < nums.size()){
+        nums[k++] = 0;
+    }
+}
+
+vector<int> AlgorithmsBasic::twoSum(vector<int> &numbers, int target) {
+    int i = 0, j = (int)numbers.size() - 1;
+    while (i < j){
+        int sum = numbers[i] + numbers[j];
+        if (sum == target){
+            return vector<int>({i+1, j+1});
+        }else if (sum < target){
+            i ++;
+        }else{
+            j --;
+        }
+    }
+    return vector<int>();
+}
