@@ -97,3 +97,39 @@ vector<int> AlgorithmsBasic::twoSum(vector<int> &numbers, int target) {
     }
     return vector<int>();
 }
+
+void AlgorithmsBasic::reverseString(vector<char> &s) {
+    if (s.size() <= 1){
+        return;
+    }
+    int i = 0, j = s.size() - 1;
+    while (i < j){
+        char t = s[i];
+        s[i] = s[j];
+        s[j] = t;
+        i ++;
+        j --;
+    }
+}
+
+string AlgorithmsBasic::reverseWords(string s) {
+    int n = (int)s.length();
+    if (n <= 1){
+        return s;
+    }
+    string ret = "";
+    int i = 0, j = i + 1, k = 0;
+    while (i < n){
+        while (j < n && s[j] != ' '){
+            j ++;
+        }
+        int left = i, right = j - 1;
+        while (left <= right){
+            ret += s[right--];
+        }
+        ret += ' ';
+        i = j + 1;
+        j = i + 1;
+    }
+    return ret.substr(0,n);
+}

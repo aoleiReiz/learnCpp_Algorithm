@@ -5,7 +5,8 @@
 #ifndef LEARNCPP_ALGORITHM_ALGORITHMSBASIC_H
 #define LEARNCPP_ALGORITHM_ALGORITHMSBASIC_H
 #include <vector>
-
+#include <iostream>
+#include <string>
 using namespace std;
 
 
@@ -26,6 +27,10 @@ public:
     void moveZeroes(vector<int>& nums);
     //https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/
     vector<int> twoSum(vector<int>& numbers, int target);
+    //https://leetcode-cn.com/problems/reverse-string/
+    void reverseString(vector<char>& s);
+    //https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/
+    string reverseWords(string s);
 };
 
 

@@ -15,6 +15,10 @@ public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2);
     //https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/
     int maxProfit(vector<int>& prices);
+    //https://leetcode-cn.com/problems/reshape-the-matrix/
+    vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c);
+    //https://leetcode-cn.com/problems/pascals-triangle/
+    vector<vector<int>> generate(int numRows);
 };
 
 
