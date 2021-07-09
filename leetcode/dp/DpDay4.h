@@ -11,7 +11,7 @@ using namespace std;
 
 class DpDay4 {
     bool canJump(vector<int>& nums);
-    int jump(vector<int>& nums)
+    int jump(vector<int>& nums);
 };
 
 

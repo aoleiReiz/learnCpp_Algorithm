@@ -19,6 +19,10 @@ public:
     vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c);
     //https://leetcode-cn.com/problems/pascals-triangle/
     vector<vector<int>> generate(int numRows);
+    //https://leetcode-cn.com/problems/valid-sudoku/
+    bool isValidSudoku(vector<vector<char>>& board);
+    //https://leetcode-cn.com/problems/set-matrix-zeroes/
+    void setZeroes(vector<vector<int>>& matrix);
 };
 
 

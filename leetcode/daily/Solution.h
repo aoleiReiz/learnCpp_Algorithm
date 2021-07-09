@@ -32,6 +32,7 @@ public:
     TreeNode* sufficientSubset(TreeNode* root, int limit);//https://leetcode-cn.com/problems/insufficient-nodes-in-root-to-leaf-paths/
     TreeNode* sufficientSubsetHelper(TreeNode* node, int limit, int cur);
     vector<vector<string>> displayTable(vector<vector<string>>& orders);
+    int majorityElement(vector<int>& nums);
 };
 
 

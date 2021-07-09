@@ -98,3 +98,76 @@ vector<vector<int>> ArraySolution::generate(int numRows) {
     }
     return res;
 }
+
+bool ArraySolution::isValidSudoku(vector<vector<char>> &board) {
+    // check row
+    for (int i = 0; i < 9; ++i) {
+        int tabu[10] = {0};
+        for(int j = 0; j < 9 ; ++j){
+            if (board[i][j] == '.'){
+                continue;
+            }
+            tabu[board[i][j] - '0'] ++;
+            if (tabu[board[i][j] - '0'] > 1){
+                return false;
+            }
+        }
+    }
+    // check col
+    for (int i = 0; i < 9; ++i) {
+        int tabu[10] = {0};
+        for(int j = 0; j < 9 ; ++j){
+            if (board[j][i] == '.'){
+                continue;
+            }
+            tabu[board[j][i] - '0'] ++;
+            if (tabu[board[j][i]- '0'] > 1){
+                return false;
+            }
+        }
+    }
+    // check sub area
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            int tabu[10] = {0};
+            for (int k = 0; k < 3; ++k) {
+                for (int l = 0; l < 3; ++l) {
+                    if (board[3 * i + k][3 * j + l] == '.'){
+                        continue;
+                    }
+                    tabu[board[3 * i + k][3 * j + l]- '0'] ++;
+                    if (tabu[board[3 * i + k][3 * j + l]- '0'] > 1){
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+    return true;
+}
+
+void ArraySolution::setZeroes(vector<vector<int>> &matrix) {
+    int m = matrix.size();
+    int n = matrix[0].size();
+    int flag_col0 = false;
+    for (int i = 0; i < m; ++i) {
+        if (!matrix[i][0]){
+            flag_col0 = true;
+        }
+        for (int j = 1; j < n; ++j) {
+            if (!matrix[i][j]){
+                matrix[i][0] = matrix[0][j] = 0;
+            }
+        }
+    }
+    for (int i = m-1; i >=0 ; --i) {
+        for (int j = 1; j < n; ++j) {
+            if (!matrix[i][0] || !matrix[0][j]){
+                matrix[i][j] = 0;
+            }
+        }
+        if (flag_col0){
+            matrix[i][0] = 0;
+        }
+    }
+}

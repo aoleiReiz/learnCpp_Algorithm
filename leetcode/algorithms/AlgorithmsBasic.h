@@ -10,6 +10,15 @@
 using namespace std;
 
 
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
+
 class AlgorithmsBasic {
 
 private:
@@ -31,6 +40,10 @@ public:
     void reverseString(vector<char>& s);
     //https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/
     string reverseWords(string s);
+    //https://leetcode-cn.com/problems/middle-of-the-linked-list/
+    ListNode* middleNode(ListNode* head);
+    //https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/
+    ListNode* removeNthFromEnd(ListNode* head, int n);
 };
 
 

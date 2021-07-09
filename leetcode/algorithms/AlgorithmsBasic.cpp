@@ -133,3 +133,44 @@ string AlgorithmsBasic::reverseWords(string s) {
     }
     return ret.substr(0,n);
 }
+
+ListNode *AlgorithmsBasic::middleNode(ListNode *head) {
+    int length = 0;
+    ListNode *p = head;
+    while (p != nullptr){
+        length ++;
+        p = p->next;
+    }
+    if (length == 1){
+        return head;
+    }
+    int i = 0;
+    p = head;
+    while (i * 2 < length){
+        p = p->next;
+        i ++;
+    }
+
+    return p;
+}
+
+ListNode *AlgorithmsBasic::removeNthFromEnd(ListNode *head, int n) {
+    ListNode * dummyHead = new ListNode(-1);
+    dummyHead->next = head;
+    ListNode * first = dummyHead;
+    ListNode * second = dummyHead;
+    int i = 0;
+    while (i < n){
+        first = first->next;
+        i ++;
+    }
+    while (first->next != nullptr){
+        first = first->next;
+        second = second->next;
+    }
+    ListNode * deleteNode = second -> next;
+    second->next = deleteNode->next;
+    delete deleteNode;
+    return dummyHead->next;
+}
+

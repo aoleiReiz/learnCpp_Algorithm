@@ -147,4 +147,26 @@ vector<vector<string>> Solution::displayTable(vector<vector<string>> &orders) {
     return res;
 }
 
+int Solution::majorityElement(vector<int> &nums) {
+    int candidate = -1, count = 0;
+    for (int i : nums) {
+        if (count == 0){
+            candidate = i;
+        }
+        if (i == candidate){
+            count += 1;
+        }else{
+            count -= 1;
+        }
+    }
+    count = 0;
+    int length = nums.size();
+    for (int i = 0; i < length; ++i){
+        if (nums[i] == candidate){
+            count ++;
+        }
+    }
+    return count * 2 > length ?candidate : -1;
+}
+
 
