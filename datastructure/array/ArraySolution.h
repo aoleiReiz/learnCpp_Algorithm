@@ -6,6 +6,7 @@
 #define LEARNCPP_ALGORITHM_ARRAYSOLUTION_H
 #include <vector>
 #include <unordered_map>
+#include "climits"
 using namespace std;
 
 class ArraySolution {

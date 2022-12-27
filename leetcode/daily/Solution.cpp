@@ -15,12 +15,12 @@ int Solution::peakIndexInMountainArray(vector<int> &arr) {
     int n = arr.size();
     int ans = -1;
     int left = 0, right = n - 2;
-    while (left <= right){
+    while (left <= right) {
         int mid = (right - left) / 2 + left;
-        if (arr[mid] > arr [mid + 1] ){
+        if (arr[mid] > arr[mid + 1]) {
             ans = mid;
             right = mid - 1;
-        }else{
+        } else {
             left = mid + 1;
         }
     }
@@ -28,12 +28,12 @@ int Solution::peakIndexInMountainArray(vector<int> &arr) {
 }
 
 //https://leetcode-cn.com/problems/occurrences-after-bigram/submissions/
-vector<string> Solution::findOcurrences(string text, string first, string second){
+vector<string> Solution::findOcurrences(string text, string first, string second) {
     vector<string> res;
     istringstream ss(text);
     string cur = "", firstStr = "", secondStr = "";
-    while (ss >> cur){
-        if((first == firstStr) && (second == secondStr)){
+    while (ss >> cur) {
+        if ((first == firstStr) && (second == secondStr)) {
             res.push_back(cur);
         }
         firstStr = secondStr;
@@ -43,23 +43,24 @@ vector<string> Solution::findOcurrences(string text, string first, string second
 }
 
 int Solution::numTilePossibilities(string tiles) {
-    vector<int>characterCount(26, 0);
+    vector<int> characterCount(26, 0);
     for (int i = 0; i < tiles.size(); ++i) {
         characterCount[tiles[i] - 'A']++;
     }
-    
+
     return dfsCount(characterCount);
 }
+
 int Solution::dfsCount(vector<int> characterCount) {
     int count = 0;
     for (int i = 0; i < 26; ++i) {
-        if(characterCount[i] == 0){
+        if (characterCount[i] == 0) {
             continue;
         }
-        ++ count;
-        characterCount[i] --;
+        ++count;
+        characterCount[i]--;
         count += dfsCount(characterCount);
-        characterCount[i] ++;
+        characterCount[i]++;
     }
     return count;
 }
@@ -67,13 +68,14 @@ int Solution::dfsCount(vector<int> characterCount) {
 TreeNode *Solution::sufficientSubset(TreeNode *root, int limit) {
     return sufficientSubsetHelper(root, limit, 0);
 }
+
 TreeNode *Solution::sufficientSubsetHelper(TreeNode *node, int limit, int cur) {
-    if(node == nullptr){
+    if (node == nullptr) {
         return nullptr;
     }
     cur += node->val;
-    if(node->left == nullptr && node->right == nullptr){
-        if (cur < limit){
+    if (node->left == nullptr && node->right == nullptr) {
+        if (cur < limit) {
             delete node;
             return nullptr;
         }
@@ -81,7 +83,7 @@ TreeNode *Solution::sufficientSubsetHelper(TreeNode *node, int limit, int cur) {
     }
     node->left = sufficientSubsetHelper(node->left, limit, cur);
     node->right = sufficientSubsetHelper(node->right, limit, cur);
-    if (node->left == nullptr && node->right == nullptr){
+    if (node->left == nullptr && node->right == nullptr) {
         return nullptr;
     }
     return node;
@@ -95,28 +97,28 @@ vector<vector<string>> Solution::displayTable(vector<vector<string>> &orders) {
     unordered_map<string, unordered_map<string, int>> orderCountMap;
     vector<string> tables;
     vector<string> foods;
-    unordered_set<string>tableSet;
-    unordered_set<string>foodSet;
+    unordered_set<string> tableSet;
+    unordered_set<string> foodSet;
 
-    for(vector<string> &order : orders){
+    for (vector<string> &order: orders) {
         string table = order[1];
         string food = order[2];
-        if (tableSet.count(table)<= 0){
+        if (tableSet.count(table) <= 0) {
             tables.push_back(table);
             tableSet.insert(table);
         }
-        if (foodSet.count(food) <= 0){
+        if (foodSet.count(food) <= 0) {
             foods.push_back(food);
             foodSet.insert(food);
         }
 
-        if (orderCountMap.count(table) > 0){
-            if (orderCountMap[table].count(food) > 0){
+        if (orderCountMap.count(table) > 0) {
+            if (orderCountMap[table].count(food) > 0) {
                 orderCountMap[table][food] += 1;
-            }else{
+            } else {
                 orderCountMap[table].insert(make_pair(food, 1));
             }
-        }else{
+        } else {
             orderCountMap[table] = unordered_map<string, int>();
             orderCountMap[table].insert(make_pair(food, 1));
         }
@@ -124,21 +126,21 @@ vector<vector<string>> Solution::displayTable(vector<vector<string>> &orders) {
 
     sort(tables.begin(), tables.end(), compareStringInteger);
     sort(foods.begin(), foods.end());
-    vector<vector<string>>res;
+    vector<vector<string>> res;
     vector<string> header;
     header.push_back("Table");
-    for(string &food : foods){
+    for (string &food: foods) {
         header.push_back(food);
     }
     res.push_back(header);
 
-    for(string &table : tables){
+    for (string &table: tables) {
         vector<string> row;
         row.push_back(table);
-        for (string &food : foods) {
-            if (orderCountMap[table].count(food) <= 0){
+        for (string &food: foods) {
+            if (orderCountMap[table].count(food) <= 0) {
                 row.push_back(to_string(0));
-            }else{
+            } else {
                 row.push_back(to_string(orderCountMap[table][food]));
             }
         }
@@ -149,24 +151,38 @@ vector<vector<string>> Solution::displayTable(vector<vector<string>> &orders) {
 
 int Solution::majorityElement(vector<int> &nums) {
     int candidate = -1, count = 0;
-    for (int i : nums) {
-        if (count == 0){
+    for (int i: nums) {
+        if (count == 0) {
             candidate = i;
         }
-        if (i == candidate){
+        if (i == candidate) {
             count += 1;
-        }else{
+        } else {
             count -= 1;
         }
     }
     count = 0;
     int length = nums.size();
-    for (int i = 0; i < length; ++i){
-        if (nums[i] == candidate){
-            count ++;
+    for (int i = 0; i < length; ++i) {
+        if (nums[i] == candidate) {
+            count++;
         }
     }
-    return count * 2 > length ?candidate : -1;
+    return count * 2 > length ? candidate : -1;
+}
+
+int Solution::minimumMoves(string s) {
+    int count = 0;
+    int idx = 0;
+    while (idx < s.length()) {
+        if (s[idx] == 'X') {
+            idx += 3;
+            count++;
+        } else {
+            idx += 1;
+        }
+    }
+    return count;
 }
 
 
