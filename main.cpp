@@ -1,18 +1,19 @@
 #include <iostream>
 #include <string>
+#include "leetcode/daily/Solution.h"
 #include "leetcode/algorithms/backtrack/BackTrack.h"
 
 using namespace std;
 
 int main() {
     BackTrack backTrack;
-    vector<int> nums({1, 2, 3});
-    vector<vector<int>> res = backTrack.subsets(nums);
-    for (int i = 0; i < res.size(); ++i) {
-        for (int j = 0; j < res.at(i).size(); ++j) {
-            cout << res.at(i).at(j) << " ";
+    vector<int> nums({2,5,2,1,2});
+    vector<vector<int>> res = backTrack.combinationSum2(nums, 5);
+    for (vector<int> &v: res) {
+        for (int i: v) {
+            cout << i << " ";
         }
-        cout << endl;
+        cout <<endl;
     }
     return 0;
 }

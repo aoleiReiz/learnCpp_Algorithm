@@ -43,6 +43,8 @@ public:
     int majorityElement(vector<int> &nums);
 
     int minimumMoves(string s);
+
+    int minimumLength(string s);
 };
 
 

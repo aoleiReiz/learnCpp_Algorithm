@@ -185,4 +185,19 @@ int Solution::minimumMoves(string s) {
     return count;
 }
 
+int Solution::minimumLength(string s) {
+    int leftIdx = 0;
+    int rightIdx = s.length() - 1;
+    while (leftIdx < rightIdx && s[leftIdx] == s[rightIdx]){
+        char preLeft = s[leftIdx];
+        while (s[leftIdx] == preLeft && leftIdx <= rightIdx){
+            leftIdx += 1;
+        }
+        while (rightIdx >= leftIdx && s[rightIdx] == preLeft ){
+            rightIdx -= 1;
+        }
+    }
+    return rightIdx - leftIdx + 1;
+}
+
 
