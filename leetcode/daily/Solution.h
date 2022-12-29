@@ -45,6 +45,8 @@ public:
     int minimumMoves(string s);
 
     int minimumLength(string s);
+
+    vector<int> twoOutOfThree(vector<int> &nums1, vector<int> &nums2, vector<int> &nums3);
 };
 
 

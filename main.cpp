@@ -6,14 +6,14 @@
 using namespace std;
 
 int main() {
-    BackTrack backTrack;
-    vector<int> nums({2,5,2,1,2});
-    vector<vector<int>> res = backTrack.combinationSum2(nums, 5);
-    for (vector<int> &v: res) {
-        for (int i: v) {
-            cout << i << " ";
-        }
-        cout <<endl;
+    Solution solution;
+    vector<int> nums1({1,1,3,2});
+    vector<int> nums2({2,3});
+    vector<int> nums3({3});
+    vector<int> res = solution.twoOutOfThree(nums1, nums2, nums3);
+    for (int num: res) {
+        cout << num << " ";
     }
+    cout<< endl;
     return 0;
 }
