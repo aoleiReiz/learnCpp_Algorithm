@@ -188,12 +188,12 @@ int Solution::minimumMoves(string s) {
 int Solution::minimumLength(string s) {
     int leftIdx = 0;
     int rightIdx = s.length() - 1;
-    while (leftIdx < rightIdx && s[leftIdx] == s[rightIdx]){
+    while (leftIdx < rightIdx && s[leftIdx] == s[rightIdx]) {
         char preLeft = s[leftIdx];
-        while (s[leftIdx] == preLeft && leftIdx <= rightIdx){
+        while (s[leftIdx] == preLeft && leftIdx <= rightIdx) {
             leftIdx += 1;
         }
-        while (rightIdx >= leftIdx && s[rightIdx] == preLeft ){
+        while (rightIdx >= leftIdx && s[rightIdx] == preLeft) {
             rightIdx -= 1;
         }
     }
@@ -202,22 +202,66 @@ int Solution::minimumLength(string s) {
 
 vector<int> Solution::twoOutOfThree(vector<int> &nums1, vector<int> &nums2, vector<int> &nums3) {
     unordered_map<int, int> mp;
-    for (auto& i : nums1) {
+    for (auto &i: nums1) {
         mp[i] = 1;
     }
-    for (auto& i : nums2) {
+    for (auto &i: nums2) {
         mp[i] |= 2;
     }
-    for (auto& i : nums3) {
+    for (auto &i: nums3) {
         mp[i] |= 4;
     }
     vector<int> res;
-    for (auto& [k, v] : mp) {
+    for (auto&[k, v]: mp) {
         if (v & (v - 1)) {
             res.push_back(k);
         }
     }
     return res;
+}
+
+char Solution::repeatedCharacter(string s) {
+    unordered_set<char> set;
+    int idx = 0;
+    int minIdx = INT_MAX;
+    char res = 0;
+    for (auto &c: s) {
+        if (set.find(c) != set.end()) {
+            if (idx < minIdx) {
+                minIdx = idx;
+                res = c;
+            }
+        } else {
+            set.insert(c);
+        }
+        idx++;
+    }
+    return res;
+}
+
+bool Solution::areNumbersAscending(string s) {
+    int preNumber = INT_MIN;
+    string cur = "";
+    for (auto &c: s) {
+        if (c >= '0' and c <= '9') {
+            cur += c;
+        } else if (cur.length() > 0) {
+            int curNumber = stoi(cur);
+            if (curNumber <= preNumber) {
+                return false;
+            }
+            preNumber = curNumber;
+            cur = "";
+        }
+    }
+    if (cur.length() > 0) {
+        int curNumber = stoi(cur);
+        if (curNumber <= preNumber) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 

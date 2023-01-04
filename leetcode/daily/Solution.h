@@ -47,6 +47,10 @@ public:
     int minimumLength(string s);
 
     vector<int> twoOutOfThree(vector<int> &nums1, vector<int> &nums2, vector<int> &nums3);
+
+    char repeatedCharacter(string s);
+
+    bool areNumbersAscending(string s);
 };
 
 
