@@ -51,6 +51,8 @@ public:
     char repeatedCharacter(string s);
 
     bool areNumbersAscending(string s);
+
+    int countEven(int num);
 };
 
 

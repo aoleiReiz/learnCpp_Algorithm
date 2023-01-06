@@ -264,4 +264,20 @@ bool Solution::areNumbersAscending(string s) {
     return true;
 }
 
+int Solution::countEven(int num) {
+    int count = 0;
+    for (int i = 1; i <=num ; ++i) {
+        int sum = 0, j = i;
+        while (j > 0){
+            int curDigit = j % 10;
+            j /= 10;
+            sum += curDigit;
+        }
+        if(sum % 2 == 0){
+            count += 1;
+        }
+    }
+    return count;
+}
+
 
