@@ -7,12 +7,17 @@
 #include "sort/InsertionSort.h"
 #include "sort/ShellSort.h"
 #include "sort/HeapSort.h"
+#include "sort/QuickSort.h"
 
 using namespace std;
 
 int main() {
-    HeapSort heapSort;
+    QuickSort quickSort;
     vector<int> nums({3,2,3,1,2,4,5,5,6});
-    cout<< heapSort.findKthLargest(nums, 4) << endl;
+    quickSort.sortArray(nums);
+    for (auto num: nums) {
+        cout<< num << " ";
+    }
+    cout << endl;
     return 0;
 }
