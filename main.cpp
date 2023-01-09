@@ -8,16 +8,13 @@
 #include "sort/ShellSort.h"
 #include "sort/HeapSort.h"
 #include "sort/QuickSort.h"
+#include "sort/MergeSort.h"
 
 using namespace std;
 
 int main() {
-    QuickSort quickSort;
-    vector<int> nums({3,2,3,1,2,4,5,5,6});
-    quickSort.sortArray(nums);
-    for (auto num: nums) {
-        cout<< num << " ";
-    }
-    cout << endl;
+    MergeSort mergeSort;
+    vector<int> nums({7,5,6,4});
+    cout<< mergeSort.reversePairs(nums)<<endl;
     return 0;
 }
