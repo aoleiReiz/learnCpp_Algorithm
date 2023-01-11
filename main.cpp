@@ -11,12 +11,19 @@
 #include "sort/MergeSort.h"
 #include "sort/CountSort.h"
 #include "sort/RadixSort.h"
+#include "algoexpert/easy/EasyLast6.h"
 
 using namespace std;
 
 int main() {
-    RadixSort rs;
-    vector<int> nums({1,4,3,2});
-    cout<<rs.arrayPairSum(nums) << endl;
+    EasyLast6 e;
+    vector<string> words({"dog", "god"});
+    vector<vector<string>> res = e.semordnilap(words);
+    for (auto & vec: res) {
+        for (string s: vec) {
+            cout << s << " ";
+        }
+        cout << endl;
+    }
     return 0;
 }

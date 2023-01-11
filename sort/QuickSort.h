@@ -27,6 +27,7 @@ public:
     PartitionedNode partition(vector<int>& nums, int left, int right);
 
     void swap(vector<int>& nums, int i, int j);
+    void sortColors(vector<int>& nums);
 
 };
 

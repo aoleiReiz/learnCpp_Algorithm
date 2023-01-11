@@ -53,6 +53,8 @@ public:
     bool areNumbersAscending(string s);
 
     int countEven(int num);
+
+    bool digitCount(string num);
 };
 
 

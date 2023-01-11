@@ -43,3 +43,19 @@ void QuickSort::swap(vector<int> &nums, int i, int j) {
     nums[i] = nums[j];
     nums[j] = temp;
 }
+
+void QuickSort::sortColors(vector<int> &nums) {
+    int k = -1, i = 0, j = nums.size() -1 ;
+    while (i <= j){
+        if (nums[i] == 0){
+            k++;
+            swap(nums, k, i);
+            i ++;
+        } else if (nums[i] == 1){
+            i ++;
+        }else{
+            swap(nums, j, i);
+            j -= 1;
+        }
+    }
+}

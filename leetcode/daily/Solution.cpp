@@ -280,4 +280,17 @@ int Solution::countEven(int num) {
     return count;
 }
 
+bool Solution::digitCount(string num) {
+    vector<int>count(10, 0);
+    for (auto digit: num) {
+        count[digit - '0']++;
+    }
+    for (int i = 0; i < num.size(); ++i) {
+        if (count[i] != num[i] - '0'){
+            return false;
+        }
+    }
+    return true;
+}
+
 

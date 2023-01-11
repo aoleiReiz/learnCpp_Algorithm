@@ -51,3 +51,67 @@ string EasyLast6::runLengthEncoding(string str) {
     res += prev;
     return res;
 }
+
+bool EasyLast6::generateDocument(string characters, string document) {
+    unordered_map<char, int> counter;
+    for (auto & c: characters) {
+        auto it = counter.find(c);
+        if (it != counter.end()){
+            it -> second ++;
+        }else{
+            counter[c] = 1;
+        }
+    }
+    for (auto & c: document) {
+        auto it = counter.find(c);
+        if (it == counter.end()){
+            return false;
+        }
+        if (it -> second <= 0){
+            return false;
+        }
+        it -> second --;
+    }
+    return true;
+}
+
+int EasyLast6::firstNonRepeatingCharacter(string string) {
+    unordered_map<char, int> counter;
+    for (auto & c: string) {
+        auto it = counter.find(c);
+        if (it != counter.end()){
+            it -> second ++;
+        }else{
+            counter[c] = 1;
+        }
+    }
+    for (int i = 0; i < string.length(); ++i) {
+        auto it = counter.find(string[i]);
+        if (it -> second == 1){
+            return i;
+        }
+    }
+    return -1;
+}
+
+vector<vector<string>> EasyLast6::semordnilap(vector<string> words) {
+    unordered_set<string> wordSet({words.begin(), words.end()});
+    vector<vector<string>>res;
+    for (auto & word: words) {
+        auto it = wordSet.find(word);
+        if (it == wordSet.end()){
+            continue;
+        }
+        wordSet.erase(it);
+        string reverseWord = "";
+        for (int i = word.size() - 1; i >= 0; --i) {
+            reverseWord += word[i];
+        }
+        auto it2 = wordSet.find(reverseWord);
+        if (it2 != wordSet.end()){
+            res.push_back(vector<string>({word, reverseWord}));
+            wordSet.erase(it2);
+        }
+    }
+    return res;
+}
