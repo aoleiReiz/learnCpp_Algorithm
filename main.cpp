@@ -12,18 +12,25 @@
 #include "sort/CountSort.h"
 #include "sort/RadixSort.h"
 #include "algoexpert/easy/EasyLast6.h"
+#include "algoexpert/mid/Mid1to5.h"
+#include "datastructure/UnionFind.h"
 
 using namespace std;
 
 int main() {
-    EasyLast6 e;
-    vector<string> words({"dog", "god"});
-    vector<vector<string>> res = e.semordnilap(words);
-    for (auto & vec: res) {
-        for (string s: vec) {
-            cout << s << " ";
-        }
-        cout << endl;
-    }
+    UnionFind uf;
+    uf.createSet(5);
+    uf.createSet(10);
+    cout << uf.find(5).value() <<endl;
+    cout << uf.find(10).value() <<endl;
+    uf.createUnion(5, 10);
+    cout << uf.find(5).value() <<endl;
+    cout << uf.find(10).value() <<endl;
+    uf.createSet(20);
+    cout << uf.find(20).value() << endl;
+    uf.createUnion(20, 10);
+    cout << uf.find(5).value() <<endl;
+    cout << uf.find(10).value() <<endl;
+    cout << uf.find(20).value() << endl;
     return 0;
 }
