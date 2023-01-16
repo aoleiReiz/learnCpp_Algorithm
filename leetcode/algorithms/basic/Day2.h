@@ -6,7 +6,7 @@
 #define LEARNCPP_ALGORITHM_DAY2_H
 
 #include <vector>
-
+#include <iostream>
 using namespace std;
 
 class Day2 {

@@ -15,12 +15,16 @@
 #include "algoexpert/mid/Mid1to5.h"
 #include "datastructure/UnionFind.h"
 #include "leetcode/algorithms/basic/Day2.h"
+#include "leetcode/algorithms/basic/ProgrammingDay3.h"
 using namespace std;
 
 int main() {
-    Solution s;
-    string sentence1 = "v v i y PWG CQm", sentence2 = "S cfSD GsjbETXQ";
-    cout<< s.areSentencesSimilar(sentence1, sentence2)<< endl;
-
+    ProgrammingDay3 s;
+    vector<int > nums({0});
+    vector<int> res = s.plusOne(nums);
+    for(auto num : res){
+        cout << num<<" ";
+    }
+    cout << endl;
     return 0;
 }

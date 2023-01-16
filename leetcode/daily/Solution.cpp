@@ -296,23 +296,24 @@ bool Solution::digitCount(string num) {
 
 int Solution::rearrangeCharacters(string s, string target) {
     unordered_map<char, int> map;
-    for(auto & c : s){
+    for (auto &c: s) {
         map[c]++;
     }
     int count = 0;
     bool flag = true;
     while (flag) {
-        for (char i : target) {
-            if (map[i] == 0){
+        for (char i: target) {
+            if (map[i] == 0) {
                 flag = false;
                 break;
-            }else{
+            } else {
                 map[i]--;
             }
         }
     }
     return count;
-=======
+}
+
 int Solution::minMaxGame(vector<int> &nums) {
     int n = nums.size();
     if (n == 1) {
