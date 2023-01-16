@@ -57,6 +57,12 @@ public:
     bool digitCount(string num);
 
     int rearrangeCharacters(string s, string target);
+
+    int minMaxGame(vector<int>& nums);
+
+    bool areSentencesSimilar(string sentence1, string sentence2);
+
+    vector<string> splitWords(string sentence);
 };
 
 

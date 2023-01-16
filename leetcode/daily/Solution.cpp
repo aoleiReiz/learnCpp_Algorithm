@@ -3,6 +3,7 @@
 //
 
 #include "Solution.h"
+#include <utility>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -266,14 +267,14 @@ bool Solution::areNumbersAscending(string s) {
 
 int Solution::countEven(int num) {
     int count = 0;
-    for (int i = 1; i <=num ; ++i) {
+    for (int i = 1; i <= num; ++i) {
         int sum = 0, j = i;
-        while (j > 0){
+        while (j > 0) {
             int curDigit = j % 10;
             j /= 10;
             sum += curDigit;
         }
-        if(sum % 2 == 0){
+        if (sum % 2 == 0) {
             count += 1;
         }
     }
@@ -281,12 +282,12 @@ int Solution::countEven(int num) {
 }
 
 bool Solution::digitCount(string num) {
-    vector<int>count(10, 0);
+    vector<int> count(10, 0);
     for (auto digit: num) {
         count[digit - '0']++;
     }
     for (int i = 0; i < num.size(); ++i) {
-        if (count[i] != num[i] - '0'){
+        if (count[i] != num[i] - '0') {
             return false;
         }
     }
@@ -311,6 +312,81 @@ int Solution::rearrangeCharacters(string s, string target) {
         }
     }
     return count;
+=======
+int Solution::minMaxGame(vector<int> &nums) {
+    int n = nums.size();
+    if (n == 1) {
+        return nums[0];
+    }
+    vector<int> curArray(nums);
+    while (n > 1) {
+        vector<int> tempNums;
+        int k = 0;
+        for (int i = 0; i < n - 1; i += 2) {
+            if (k % 2 == 0) {
+                tempNums.push_back(curArray[i] > curArray[i + 1] ? curArray[i + 1] : curArray[i]);
+            } else {
+                tempNums.push_back(curArray[i] > curArray[i + 1] ? curArray[i] : curArray[i + 1]);
+            }
+            k++;
+            curArray = tempNums;
+        }
+        n /= 2;
+    }
+
+    return curArray[0];
+}
+
+bool Solution::areSentencesSimilar(string sentence1, string sentence2) {
+    vector<string> wordsOne = splitWords(std::move(sentence1));
+    vector<string> wordsTwo = splitWords(std::move(sentence2));
+    int leftOne = 0, rightOne = wordsOne.size() - 1;
+    int leftTwo = 0, rightTwo = wordsTwo.size() - 1;
+    if (leftOne == rightOne || leftTwo == rightTwo){
+        if (leftOne == rightOne){
+            if (wordsOne[leftOne] == wordsTwo[leftTwo] || wordsOne[leftOne] == wordsTwo[rightTwo]){
+                return true;
+            }
+            return false;
+        }else if (leftTwo == rightTwo){
+            if (wordsOne[leftOne] == wordsTwo[leftTwo] || wordsOne[rightOne] == wordsTwo[rightTwo]){
+                return true;
+            }
+            return false;
+        }
+    }
+    bool compareLeft = true;
+    bool compareRight = true;
+    while (leftOne <= rightTwo && leftTwo <= rightOne && (compareLeft || compareRight)){
+        if (wordsOne[leftOne] == wordsTwo[leftTwo]){
+            leftOne ++;
+            leftTwo ++;
+        }else{
+            compareLeft = false;
+        }
+        if(wordsOne[rightOne] == wordsTwo[rightTwo]){
+            rightOne --;
+            rightTwo --;
+        }else{
+            compareRight = false;
+        }
+    }
+    return (leftOne > rightOne || leftTwo > rightTwo);
+}
+
+vector<string> Solution::splitWords(string sentence) {
+    vector<string> words;
+    string::size_type idx = 0;
+    while (idx < sentence.length()){
+        string::size_type start = idx;
+        while (!isspace(sentence[idx]) && idx < sentence.size()){
+            idx++;
+        }
+        words.push_back(sentence.substr(start, idx - start));
+        idx ++;
+    }
+    return words;
+
 }
 
 

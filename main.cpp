@@ -14,23 +14,13 @@
 #include "algoexpert/easy/EasyLast6.h"
 #include "algoexpert/mid/Mid1to5.h"
 #include "datastructure/UnionFind.h"
-
+#include "leetcode/algorithms/basic/Day2.h"
 using namespace std;
 
 int main() {
-    UnionFind uf;
-    uf.createSet(5);
-    uf.createSet(10);
-    cout << uf.find(5).value() <<endl;
-    cout << uf.find(10).value() <<endl;
-    uf.createUnion(5, 10);
-    cout << uf.find(5).value() <<endl;
-    cout << uf.find(10).value() <<endl;
-    uf.createSet(20);
-    cout << uf.find(20).value() << endl;
-    uf.createUnion(20, 10);
-    cout << uf.find(5).value() <<endl;
-    cout << uf.find(10).value() <<endl;
-    cout << uf.find(20).value() << endl;
+    Solution s;
+    string sentence1 = "v v i y PWG CQm", sentence2 = "S cfSD GsjbETXQ";
+    cout<< s.areSentencesSimilar(sentence1, sentence2)<< endl;
+
     return 0;
 }
