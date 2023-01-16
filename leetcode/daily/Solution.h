@@ -55,6 +55,12 @@ public:
     int countEven(int num);
 
     bool digitCount(string num);
+
+    int minMaxGame(vector<int>& nums);
+
+    bool areSentencesSimilar(string sentence1, string sentence2);
+
+    vector<string> splitWords(string sentence);
 };
 
 

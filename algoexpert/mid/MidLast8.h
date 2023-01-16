@@ -4,10 +4,13 @@
 
 #ifndef LEARNCPP_ALGORITHM_MIDLAST8_H
 #define LEARNCPP_ALGORITHM_MIDLAST8_H
+#include <string>
 
+using namespace std;
 
 class MidLast8 {
-
+public:
+    bool oneEdit(string stringOne, string stringTwo);
 };
 
 
