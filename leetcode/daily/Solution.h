@@ -55,6 +55,8 @@ public:
     int countEven(int num);
 
     bool digitCount(string num);
+
+    int rearrangeCharacters(string s, string target);
 };
 
 

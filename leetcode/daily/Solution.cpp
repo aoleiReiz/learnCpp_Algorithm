@@ -293,4 +293,24 @@ bool Solution::digitCount(string num) {
     return true;
 }
 
+int Solution::rearrangeCharacters(string s, string target) {
+    unordered_map<char, int> map;
+    for(auto & c : s){
+        map[c]++;
+    }
+    int count = 0;
+    bool flag = true;
+    while (flag) {
+        for (char i : target) {
+            if (map[i] == 0){
+                flag = false;
+                break;
+            }else{
+                map[i]--;
+            }
+        }
+    }
+    return count;
+}
+
 
