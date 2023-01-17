@@ -54,19 +54,31 @@ LinkedList *MidLast8::mergingLinkedLists(LinkedList *linkedListOne, LinkedList *
     unordered_set<LinkedList*>setTwo;
     LinkedList *ptrOne = linkedListOne;
     LinkedList *ptrTwo = linkedListTwo;
-    while (ptrOne && ptrTwo){
-        auto it1 = setTwo.find(ptrOne);
-        if (it1 != setTwo.end()){
-            return *it1;
+    while (ptrOne || ptrTwo){
+        if (ptrOne){
+            setOne.insert(ptrOne);
         }
-        auto it2 = setOne.find(ptrTwo);
-        if (it2 != setOne.end()){
-            return *it2;
+        if (ptrTwo) {
+            setTwo.insert(ptrTwo);
         }
-        setOne.insert(ptrOne);
-        setTwo.insert(ptrTwo);
-        ptrOne ++;
-        ptrTwo ++;
+        if (ptrOne) {
+            auto it1 = setTwo.find(ptrOne);
+            if (it1 != setTwo.end()) {
+                return *it1;
+            }
+        }
+        if (ptrTwo){
+            auto it2 = setOne.find(ptrTwo);
+            if (it2 != setOne.end()){
+                return *it2;
+            }
+        }
+        if (ptrOne){
+            ptrOne = ptrOne->next;
+        }
+        if (ptrTwo){
+            ptrTwo = ptrTwo->next;
+        }
     }
     return nullptr;
 }
