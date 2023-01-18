@@ -7,6 +7,8 @@
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
+#include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -40,6 +42,9 @@ public:
     bool symmetricalTree(BinaryTree* tree);
     bool symmetricalTreeHelper(BinaryTree* tree1, BinaryTree* tree2);
     LinkedList* mergingLinkedLists(LinkedList* linkedListOne, LinkedList* linkedListTwo);
+    bool zeroSumSubarray(vector<int> nums);
+    bool zeroSumSubarray2(vector<int> nums);
+    bool zeroSumHelper(vector<int> &nums, int startIndex, int curSum, vector<bool>visited, vector<int> path);
 };
 
 

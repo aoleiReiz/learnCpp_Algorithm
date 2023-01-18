@@ -82,3 +82,58 @@ LinkedList *MidLast8::mergingLinkedLists(LinkedList *linkedListOne, LinkedList *
     }
     return nullptr;
 }
+
+bool MidLast8::zeroSumSubarray(vector<int> nums) {
+    vector<int> cumSum;
+    int curSum = 0;
+    for (auto num : nums){
+        curSum +=num;
+        cumSum.push_back(curSum);
+        if (curSum == 0){
+            return true;
+        }
+    }
+    for (int i = 0; i < cumSum.size(); ++i) {
+        for (int j = i+1; j < cumSum.size(); ++j) {
+            if (cumSum[j] - cumSum[i] == 0){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool MidLast8::zeroSumHelper(vector<int> &nums, int startIndex, int curSum, vector<bool>visited, vector<int> path) {
+    if (curSum == 0 && !path.empty()){
+        return true;
+    }
+    for (int i = startIndex; i < nums.size(); ++i) {
+        if (i > 0 and !visited[i - 1] && nums[i] == nums[i-1]){
+            continue;
+        }
+        if (curSum + nums[i] > 0){
+            continue;
+        }
+        visited[i] = true;
+        path.push_back(nums[i]);
+        if(zeroSumHelper(nums, i + 1, curSum + nums[i], visited, path)){
+            return true;
+        }
+        visited[i] = false;
+        path.pop_back();
+    }
+    return false;
+}
+
+bool MidLast8::zeroSumSubarray2(vector<int> nums) {
+    unordered_set<int> sums({0});
+    int currentSum = 0;
+    for (auto num: nums) {
+        currentSum += num;
+        if (sums.find(currentSum) != sums.end()){
+            return true;
+        }
+        sums.insert(currentSum);
+    }
+    return false;
+}
