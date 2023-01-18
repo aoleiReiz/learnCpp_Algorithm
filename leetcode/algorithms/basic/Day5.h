@@ -13,13 +13,15 @@ using namespace std;
 class Day5{
 public:
     vector<int> findAnagrams(string s, string p);
+    int numSubarrayProductLessThanK(vector<int>& nums, int k);
+    int minSubArrayLen(int target, vector<int>& nums);
 };
 
 vector<int> Day5::findAnagrams(string s, string p) {
     unordered_map<char, int> need;
     unordered_map<char, int>window;
     vector<int> res;
-    for(auto c : need){
+    for(auto c : p){
         need[c]++;
     }
     int left = 0, right = 0, valid = 0;
@@ -46,6 +48,35 @@ vector<int> Day5::findAnagrams(string s, string p) {
         }
     }
     return res;
+}
+
+int Day5::numSubarrayProductLessThanK(vector<int> &nums, int k) {
+    int left =0, right= 0, cur = 1, count = 0;
+    while (right < nums.size()){
+        cur *= nums[right];
+        while (cur >=k && right >= left && right < nums.size()){
+            cur /= nums[left];
+            left += 1;
+        }
+        count += right - left + 1;
+        right += 1;
+    }
+    return count;
+}
+
+int Day5::minSubArrayLen(int target, vector<int> &nums) {
+    int minLength = INT_MAX;
+    int left = 0, right = 0, curSum = 0;
+    while (right < nums.size()){
+        curSum += nums[right];
+        right++;
+        while (curSum >= target){
+            minLength = min(minLength, right - left + 1);
+            curSum -= nums[left];
+            left ++;
+        }
+    }
+    return minLength == INT_MAX ? 0 : minLength;
 }
 
 #endif //LEARNCPP_ALGORITHM_DAY5_H
