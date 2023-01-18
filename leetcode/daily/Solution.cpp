@@ -390,4 +390,29 @@ vector<string> Solution::splitWords(string sentence) {
 
 }
 
+bool Solution::strongPasswordCheckerII(string password) {
+    string specialCharacters = "!@#$%^&*()-+";
+    if (password.length() < 8){
+        return false;
+    }
+    bool lowerCase = false, upperCase = false, digitCase = false, specialCase = false;
+    for (int i = 0; i < password.length(); ++i) {
+        if (password[i] >= 'a' && password[i] <= 'z'){
+            lowerCase = true;
+        }else if (password[i] >= 'A' && password[i] <= 'Z'){
+            upperCase = true;
+        }else if (password[i] >= '0' && password[i] <= '9'){
+            digitCase = true;
+        }else if (specialCharacters.find(password[i],0) != string::npos){
+            specialCase = true;
+        }
+        if (i < password.length() - 1){
+            if (password[i] == password[i+1]){
+                return false;
+            }
+        }
+    }
+    return lowerCase && upperCase && digitCase && specialCase;
+}
+
 

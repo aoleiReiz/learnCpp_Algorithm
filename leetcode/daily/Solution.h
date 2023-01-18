@@ -63,6 +63,8 @@ public:
     bool areSentencesSimilar(string sentence1, string sentence2);
 
     vector<string> splitWords(string sentence);
+
+    bool strongPasswordCheckerII(string password);
 };
 
 
