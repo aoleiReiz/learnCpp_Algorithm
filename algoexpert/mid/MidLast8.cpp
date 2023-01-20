@@ -137,3 +137,24 @@ bool MidLast8::zeroSumSubarray2(vector<int> nums) {
     }
     return false;
 }
+
+bool MidLast8::twoColorable(vector<vector<int>> edges) {
+    stack<int> stack;
+    vector<int> colors(edges.size(), 0);
+    colors[0] = 1;
+    stack.push(0);
+    while (!stack.empty()){
+        int node = stack.top();
+        stack.pop();
+        for (int connection : edges[node]) {
+            if (colors[connection] == 0){
+                colors[connection] = colors[node] == 1 ? 2 : 1;
+                stack.push(connection);
+            } else if (colors[connection] == colors[node]){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
