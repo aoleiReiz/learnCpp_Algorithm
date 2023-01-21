@@ -415,4 +415,21 @@ bool Solution::strongPasswordCheckerII(string password) {
     return lowerCase && upperCase && digitCase && specialCase;
 }
 
+vector<int> Solution::findingUsersActiveMinutes(vector<vector<int>> &logs, int k) {
+    unordered_map<int, unordered_set<int>> actMap;
+    vector<int> ans(k, 0);
+    for (vector<int>  &log : logs){
+        int userId = log.at(0);
+        int timeId = log.at(1);
+        actMap[userId].insert(timeId);
+    }
+    auto iter = actMap.begin();
+    while (iter != actMap.end()){
+        int activeCount = iter->second.size();
+        ans[activeCount - 1] ++;
+        iter ++;
+    }
+    return ans;
+}
+
 

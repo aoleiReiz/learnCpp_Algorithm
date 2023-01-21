@@ -65,6 +65,8 @@ public:
     vector<string> splitWords(string sentence);
 
     bool strongPasswordCheckerII(string password);
+
+    vector<int> findingUsersActiveMinutes(vector<vector<int>>& logs, int k);
 };
 
 
