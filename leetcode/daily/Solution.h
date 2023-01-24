@@ -67,6 +67,10 @@ public:
     bool strongPasswordCheckerII(string password);
 
     vector<int> findingUsersActiveMinutes(vector<vector<int>>& logs, int k);
+
+    double calculateTax(vector<vector<int>>& brackets, int income);
+
+    vector<int> countPoints(vector<vector<int>>& points, vector<vector<int>>& queries);
 };
 
 

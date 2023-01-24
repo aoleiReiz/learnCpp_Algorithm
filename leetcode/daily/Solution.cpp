@@ -343,14 +343,14 @@ bool Solution::areSentencesSimilar(string sentence1, string sentence2) {
     vector<string> wordsTwo = splitWords(std::move(sentence2));
     int leftOne = 0, rightOne = wordsOne.size() - 1;
     int leftTwo = 0, rightTwo = wordsTwo.size() - 1;
-    if (leftOne == rightOne || leftTwo == rightTwo){
-        if (leftOne == rightOne){
-            if (wordsOne[leftOne] == wordsTwo[leftTwo] || wordsOne[leftOne] == wordsTwo[rightTwo]){
+    if (leftOne == rightOne || leftTwo == rightTwo) {
+        if (leftOne == rightOne) {
+            if (wordsOne[leftOne] == wordsTwo[leftTwo] || wordsOne[leftOne] == wordsTwo[rightTwo]) {
                 return true;
             }
             return false;
-        }else if (leftTwo == rightTwo){
-            if (wordsOne[leftOne] == wordsTwo[leftTwo] || wordsOne[rightOne] == wordsTwo[rightTwo]){
+        } else if (leftTwo == rightTwo) {
+            if (wordsOne[leftOne] == wordsTwo[leftTwo] || wordsOne[rightOne] == wordsTwo[rightTwo]) {
                 return true;
             }
             return false;
@@ -358,17 +358,17 @@ bool Solution::areSentencesSimilar(string sentence1, string sentence2) {
     }
     bool compareLeft = true;
     bool compareRight = true;
-    while (leftOne <= rightTwo && leftTwo <= rightOne && (compareLeft || compareRight)){
-        if (wordsOne[leftOne] == wordsTwo[leftTwo]){
-            leftOne ++;
-            leftTwo ++;
-        }else{
+    while (leftOne <= rightTwo && leftTwo <= rightOne && (compareLeft || compareRight)) {
+        if (wordsOne[leftOne] == wordsTwo[leftTwo]) {
+            leftOne++;
+            leftTwo++;
+        } else {
             compareLeft = false;
         }
-        if(wordsOne[rightOne] == wordsTwo[rightTwo]){
-            rightOne --;
-            rightTwo --;
-        }else{
+        if (wordsOne[rightOne] == wordsTwo[rightTwo]) {
+            rightOne--;
+            rightTwo--;
+        } else {
             compareRight = false;
         }
     }
@@ -378,13 +378,13 @@ bool Solution::areSentencesSimilar(string sentence1, string sentence2) {
 vector<string> Solution::splitWords(string sentence) {
     vector<string> words;
     string::size_type idx = 0;
-    while (idx < sentence.length()){
+    while (idx < sentence.length()) {
         string::size_type start = idx;
-        while (!isspace(sentence[idx]) && idx < sentence.size()){
+        while (!isspace(sentence[idx]) && idx < sentence.size()) {
             idx++;
         }
         words.push_back(sentence.substr(start, idx - start));
-        idx ++;
+        idx++;
     }
     return words;
 
@@ -392,22 +392,22 @@ vector<string> Solution::splitWords(string sentence) {
 
 bool Solution::strongPasswordCheckerII(string password) {
     string specialCharacters = "!@#$%^&*()-+";
-    if (password.length() < 8){
+    if (password.length() < 8) {
         return false;
     }
     bool lowerCase = false, upperCase = false, digitCase = false, specialCase = false;
     for (int i = 0; i < password.length(); ++i) {
-        if (password[i] >= 'a' && password[i] <= 'z'){
+        if (password[i] >= 'a' && password[i] <= 'z') {
             lowerCase = true;
-        }else if (password[i] >= 'A' && password[i] <= 'Z'){
+        } else if (password[i] >= 'A' && password[i] <= 'Z') {
             upperCase = true;
-        }else if (password[i] >= '0' && password[i] <= '9'){
+        } else if (password[i] >= '0' && password[i] <= '9') {
             digitCase = true;
-        }else if (specialCharacters.find(password[i],0) != string::npos){
+        } else if (specialCharacters.find(password[i], 0) != string::npos) {
             specialCase = true;
         }
-        if (i < password.length() - 1){
-            if (password[i] == password[i+1]){
+        if (i < password.length() - 1) {
+            if (password[i] == password[i + 1]) {
                 return false;
             }
         }
@@ -418,16 +418,50 @@ bool Solution::strongPasswordCheckerII(string password) {
 vector<int> Solution::findingUsersActiveMinutes(vector<vector<int>> &logs, int k) {
     unordered_map<int, unordered_set<int>> actMap;
     vector<int> ans(k, 0);
-    for (vector<int>  &log : logs){
+    for (vector<int> &log: logs) {
         int userId = log.at(0);
         int timeId = log.at(1);
         actMap[userId].insert(timeId);
     }
     auto iter = actMap.begin();
-    while (iter != actMap.end()){
+    while (iter != actMap.end()) {
         int activeCount = iter->second.size();
-        ans[activeCount - 1] ++;
-        iter ++;
+        ans[activeCount - 1]++;
+        iter++;
+    }
+    return ans;
+}
+
+double Solution::calculateTax(vector<vector<int>> &brackets, int income) {
+    int curIncome = income;
+    double tax = 0.0;
+    for (int i = 0; i < brackets.size(); ++i) {
+        int taxIncome;
+        if (i == 0) {
+            taxIncome = min(curIncome, brackets[i][0]);
+        } else {
+            taxIncome = min(curIncome, brackets[i][0] - brackets[i - 1][0]);
+        }
+        tax += taxIncome * (brackets[i][1] / 100.);
+        curIncome -= taxIncome;
+        if (curIncome <= 0) {
+            break;
+        }
+    }
+    return tax;
+}
+
+vector<int> Solution::countPoints(vector<vector<int>> &points, vector<vector<int>> &queries) {
+    vector<int> ans;
+    for (vector<int> &query: queries) {
+        int count = 0;
+        for (vector<int> &point: points) {
+            int distance = (query[0] - point[0]) * (query[0] - point[0]) +  (query[1] - point[1]) * (query[1] - point[1]);
+            if (distance <= query[2] * query[2]){
+                count ++;
+            }
+        }
+        ans.push_back(count);
     }
     return ans;
 }
