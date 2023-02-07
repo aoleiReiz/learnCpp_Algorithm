@@ -22,6 +22,10 @@ struct TreeNode {
     TreeNode *right;
 
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
 
@@ -58,7 +62,7 @@ public:
 
     int rearrangeCharacters(string s, string target);
 
-    int minMaxGame(vector<int>& nums);
+    int minMaxGame(vector<int> &nums);
 
     bool areSentencesSimilar(string sentence1, string sentence2);
 
@@ -66,11 +70,13 @@ public:
 
     bool strongPasswordCheckerII(string password);
 
-    vector<int> findingUsersActiveMinutes(vector<vector<int>>& logs, int k);
+    vector<int> findingUsersActiveMinutes(vector<vector<int>> &logs, int k);
 
-    double calculateTax(vector<vector<int>>& brackets, int income);
+    double calculateTax(vector<vector<int>> &brackets, int income);
 
-    vector<int> countPoints(vector<vector<int>>& points, vector<vector<int>>& queries);
+    vector<int> countPoints(vector<vector<int>> &points, vector<vector<int>> &queries);
+
+    bool evaluateTree(TreeNode *root);
 };
 
 

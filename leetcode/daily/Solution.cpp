@@ -466,4 +466,19 @@ vector<int> Solution::countPoints(vector<vector<int>> &points, vector<vector<int
     return ans;
 }
 
+bool Solution::evaluateTree(TreeNode *root) {
+    if (nullptr == root){
+        return true;
+    }
+    if (root->left == nullptr && root->right == nullptr) {
+        return root->val == 1;
+    }else{
+        if (root->val == 2){
+            return evaluateTree(root->left) || evaluateTree(root->right);
+        }else{
+            return evaluateTree(root->left) && evaluateTree(root->right);
+        }
+    }
+}
+
 
