@@ -41,5 +41,26 @@ public:
         return res;
     }
 
+    vector<string> removeSubfolders(vector<string>& folder) {
+        sort(folder.begin(), folder.end());
+        string cur = folder[0];
+        vector<string> ans;
+        ans.push_back(cur);
+        for (int i = 1; i < folder.size(); ++i) {
+            if (cur.size()<= 1){
+                cur = folder[i];
+                ans.push_back(cur);
+            }else{
+                if (folder[i].substr(0, cur.size()) == cur && folder[i][cur.size()] == '/'){
+                    continue;
+                }else{
+                    cur = folder[i];
+                    ans.push_back(cur);
+                }
+            }
+        }
+        return ans;
+    }
+
 };
 #endif //LEARNCPP_ALGORITHM_SOLUTION2_H
