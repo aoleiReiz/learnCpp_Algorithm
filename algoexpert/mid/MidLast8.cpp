@@ -158,3 +158,34 @@ bool MidLast8::twoColorable(vector<vector<int>> edges) {
     return true;
 }
 
+vector<int> MidLast8::stableInternships(vector<vector<int>> interns, vector<vector<int>> teams) {
+    vector<bool> visited(teams.size(), false);
+    vector<int> curSelection;
+    stableInternshipsHelper(0, teams, interns, curSelection, visited);
+    vector<vector<int>> ans;
+    for (int i = 0; i < curSelection.size(); ++i) {
+        ans.push_back(vector<int>({i, curSelection[i]}));
+    }
+    return curSelection;
+}
+
+bool MidLast8::stableInternshipsHelper(int internId, vector<vector<int>> &teams, vector<vector<int>> &interns,
+                                       vector<int> &curSelection, vector<bool> &visited) {
+    if(internId == interns.size()){
+        return true;
+    }
+    for (auto teamId : interns[internId]){
+        if (visited[teamId] || std::find(teams[teamId].begin(), teams[teamId].end(), internId) == teams[teamId].end()){
+            continue;
+        }
+        visited[teamId] = true;
+        curSelection.push_back(teamId);
+        if(stableInternshipsHelper(internId + 1, teams, interns, curSelection, visited)){
+            return true;
+        }
+        visited[teamId] = false;
+        curSelection.pop_back();
+    }
+    return false;
+}
+
