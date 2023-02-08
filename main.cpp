@@ -15,6 +15,7 @@ int main() {
     vector<int> r = midLast8.stableInternships(interns, teams);
     for(auto s: r){
         cout << s << " ";
+
     }
     cout << endl;
     return 0;
