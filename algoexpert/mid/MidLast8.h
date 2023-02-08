@@ -56,9 +56,7 @@ public:
 
     bool twoColorable(vector<vector<int>> edges);
 
-    vector<int> stableInternships(vector<vector<int>> interns, vector<vector<int>> teams);
-
-    bool stableInternshipsHelper(int internId, vector<vector<int>> &teams, vector<vector<int>> &interns, vector<int> &curSelection, vector<bool>&visited);
+    vector<vector<int>> stableInternships(vector<vector<int>> interns, vector<vector<int>> teams);
 
 };
 

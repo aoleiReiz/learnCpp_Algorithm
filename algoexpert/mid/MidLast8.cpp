@@ -158,34 +158,52 @@ bool MidLast8::twoColorable(vector<vector<int>> edges) {
     return true;
 }
 
-vector<int> MidLast8::stableInternships(vector<vector<int>> interns, vector<vector<int>> teams) {
-    vector<bool> visited(teams.size(), false);
-    vector<int> curSelection;
-    stableInternshipsHelper(0, teams, interns, curSelection, visited);
-    vector<vector<int>> ans;
-    for (int i = 0; i < curSelection.size(); ++i) {
-        ans.push_back(vector<int>({i, curSelection[i]}));
+vector<vector<int>> MidLast8::stableInternships(vector<vector<int>> interns, vector<vector<int>> teams) {
+   unordered_map<int, int> chosenInterns;
+   stack<int> freeInterns;
+    for (int i = 0; i < interns.size(); ++i) {
+        freeInterns.push(i);
     }
-    return curSelection;
-}
+    vector<int> currentInternChoices(interns.size(), 0);
 
-bool MidLast8::stableInternshipsHelper(int internId, vector<vector<int>> &teams, vector<vector<int>> &interns,
-                                       vector<int> &curSelection, vector<bool> &visited) {
-    if(internId == interns.size()){
-        return true;
+    vector<unordered_map<int, int>> teamMaps;
+    for (vector<int> & team: teams) {
+        unordered_map<int, int> rank;
+        for (int i = 0; i < teams.size(); ++i) {
+           rank[team[i]] = i;
+        }
+        teamMaps.push_back(rank);
     }
-    for (auto teamId : interns[internId]){
-        if (visited[teamId] || std::find(teams[teamId].begin(), teams[teamId].end(), internId) == teams[teamId].end()){
+
+    while (!freeInterns.empty()){
+        int internNum = freeInterns.top();
+        freeInterns.pop();
+
+        vector<int> intern = interns[internNum];
+        int teamPreference =  intern[currentInternChoices[internNum]];
+        currentInternChoices[internNum] ++;
+
+        if (chosenInterns.find(teamPreference) == chosenInterns.end()){
+            chosenInterns[teamPreference] = internNum;
             continue;
         }
-        visited[teamId] = true;
-        curSelection.push_back(teamId);
-        if(stableInternshipsHelper(internId + 1, teams, interns, curSelection, visited)){
-            return true;
+
+        int previousIntern = chosenInterns[teamPreference];
+        int previousInternRank = teamMaps[teamPreference][previousIntern];
+        int currentInternRank = teamMaps[teamPreference][internNum];
+
+        if (currentInternRank < previousInternRank){
+            freeInterns.push(previousIntern);
+            chosenInterns[teamPreference] = internNum;
+        }else{
+            freeInterns.push(internNum);
         }
-        visited[teamId] = false;
-        curSelection.pop_back();
     }
-    return false;
+
+    vector<vector<int>>matches;
+    for(auto chosenIntern: chosenInterns){
+        matches.push_back({chosenIntern.second, chosenIntern.first});
+    }
+    return matches;
 }
 
