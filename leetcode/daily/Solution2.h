@@ -72,5 +72,26 @@ public:
         }
         return res.size() <= 32 ? res : "ERROR";
     }
+
+    vector<string> getFolderNames(vector<string>& names) {
+        unordered_map<string, int>nameCount;
+        vector<string> res;
+        for (string & name: names) {
+            auto it = nameCount.find(name);
+            if(it == nameCount.end()){
+                res.push_back(name);
+                nameCount[name] = 1;
+            }else{
+                string newName = name + "(" + to_string(it->second) + ")";
+                while (nameCount.find(newName) != nameCount.end()){
+                    it->second++;
+                    newName = name + "(" + to_string(it->second) + ")";
+                }
+                res.push_back(newName);
+                it -> second ++;
+            }
+        }
+        return res;
+    }
 };
 #endif //LEARNCPP_ALGORITHM_SOLUTION2_H

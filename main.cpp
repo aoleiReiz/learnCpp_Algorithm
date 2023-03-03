@@ -1,12 +1,14 @@
 #include <iostream>
 
-#include "datastructure/trie.h"
+#include "leetcode/daily/Solution2.h"
 
 using namespace std;
 
 int main() {
-    Trie trie;
-    trie.insert("apple");
-    cout << trie.search("apple");
+    vector<string> names({"gta","gta(1)","gta","avalon"});
+    Solution2 solution2;
+    for (string &s:solution2.getFolderNames(names)) {
+        cout << s << endl;
+    }
     return 0;
 }
