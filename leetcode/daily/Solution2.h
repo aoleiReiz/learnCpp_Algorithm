@@ -64,28 +64,38 @@ public:
     }
 
     string alphabetBoardPath(string target) {
-            int cx = 0, cy = 0;
-            string res;
-            for (char c : target) {
-                int nx = (c - 'a') / 5;
-                int ny = (c - 'a') % 5;
-                if (nx < cx) {
-                    res.append(cx - nx, 'U');
-                }
-                if (ny < cy) {
-                    res.append(cy - ny, 'L');
-                }
-                if (nx > cx) {
-                    res.append(nx - cx, 'D');
-                }
-                if (ny > cy) {
-                    res.append(ny - cy, 'R');
-                }
-                res.push_back('!');
-                cx = nx;
-                cy = ny;
+        int cx = 0, cy = 0;
+        string res;
+        for (char c: target) {
+            int nx = (c - 'a') / 5;
+            int ny = (c - 'a') % 5;
+            if (nx < cx) {
+                res.append(cx - nx, 'U');
             }
-            return res;
+            if (ny < cy) {
+                res.append(cy - ny, 'L');
+            }
+            if (nx > cx) {
+                res.append(nx - cx, 'D');
+            }
+            if (ny > cy) {
+                res.append(ny - cy, 'R');
+            }
+            res.push_back('!');
+            cx = nx;
+            cy = ny;
+        }
+        return res;
+    }
+    string printBin(double num) {
+        string res = "0.";
+        while (res.size() <= 32 && num!= 0){
+            num *= 2;
+            int digit = num;
+            res.push_back(digit + '0');
+            num -= digit;
+        }
+        return res.size() <= 32 ? res : "ERROR";
     }
 };
 #endif //LEARNCPP_ALGORITHM_SOLUTION2_H

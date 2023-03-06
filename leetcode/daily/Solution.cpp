@@ -481,4 +481,25 @@ bool Solution::evaluateTree(TreeNode *root) {
     }
 }
 
+vector<vector<int>> Solution::largestLocal(vector<vector<int>> &grid) {
+    vector<vector<int>>res;
+    int n = grid.size();
+    for(int i = 0; i < n - 2; i++){
+        vector<int>row;
+        for (int j = 0; j < n -2; ++j) {
+            int curMax = INT_MIN;
+            for (int k = i; k < i + 3; ++k) {
+                for (int l = j; l < j + 3; ++l) {
+                    if(grid[k][l] > curMax){
+                        curMax = grid[k][l];
+                    }
+                }
+            }
+            row.push_back(curMax);
+        }
+        res.push_back(row);
+    }
+    return res;
+}
+
 
