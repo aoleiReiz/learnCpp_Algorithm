@@ -11,8 +11,13 @@
 using namespace std;
 
 class BinarySearch {
+private:
+    int searchFirstPosition(vector<int>& nums, int target);
+    int searchLastPosition(vector<int>& nums, int target);
 public:
     int search(vector<int> &nums, int target);
+    int searchInsert(vector<int>& nums, int target);
+    vector<int> searchRange(vector<int>& nums, int target);
 };
 
 
