@@ -10,6 +10,7 @@
 #include <string>
 #include <unordered_map>
 #include <algorithm>
+#include <queue>
 
 using namespace std;
 
@@ -61,6 +62,31 @@ public:
             }
         }
         return ans;
+    }
+
+    string alphabetBoardPath(string target) {
+        int cx = 0, cy = 0;
+        string res;
+        for (char c: target) {
+            int nx = (c - 'a') / 5;
+            int ny = (c - 'a') % 5;
+            if (nx < cx) {
+                res.append(cx - nx, 'U');
+            }
+            if (ny < cy) {
+                res.append(cy - ny, 'L');
+            }
+            if (nx > cx) {
+                res.append(nx - cx, 'D');
+            }
+            if (ny > cy) {
+                res.append(ny - cy, 'R');
+            }
+            res.push_back('!');
+            cx = nx;
+            cy = ny;
+        }
+        return res;
     }
 
     string printBin(double num) {
@@ -133,6 +159,18 @@ public:
         }
 
         return ans;
+    }
+
+    int maxValue(vector<vector<int>> &grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]) + grid[i - 1][j - 1];
+            }
+        }
+        return dp[m][n];
     }
 };
 
