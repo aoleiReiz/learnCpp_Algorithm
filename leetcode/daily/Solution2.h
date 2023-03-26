@@ -172,6 +172,27 @@ public:
         }
         return dp[m][n];
     }
+
+    int minNumberOfHours(int initialEnergy, int initialExperience, vector<int>& energy, vector<int>& experience) {
+        int trainingHours = 0;
+
+        int n = energy.size();
+        int curEnergy = 0;
+        int curExperience = initialExperience;
+
+        for(int i = 0; i < n; i++){
+            curEnergy += energy[i];
+            if(curExperience > experience[i]){
+                curExperience += experience[i];
+            }else{
+                trainingHours +=(experience[i] - curExperience + 1);
+                curExperience += ((experience[i] - curExperience + 1)+ experience[i]);
+            }
+        }
+
+        return max(max(curEnergy - initialEnergy + 1,0) + trainingHours,0);
+
+    }
 };
 
 #endif //LEARNCPP_ALGORITHM_SOLUTION2_H
