@@ -58,6 +58,8 @@ public:
 
     vector<vector<int>> stableInternships(vector<vector<int>> interns, vector<vector<int>> teams);
 
+    BinaryTree* mergeBinaryTrees(BinaryTree* tree1, BinaryTree* tree2);
+
 };
 
 

@@ -207,3 +207,22 @@ vector<vector<int>> MidLast8::stableInternships(vector<vector<int>> interns, vec
     return matches;
 }
 
+BinaryTree *MidLast8::mergeBinaryTrees(BinaryTree *tree1, BinaryTree *tree2) {
+    if(tree1 == nullptr && tree2 == nullptr){
+        return tree1;
+    }
+    else if (tree1 != nullptr && tree2 == nullptr){
+        tree1 -> left = mergeBinaryTrees(tree1->left, tree2);
+        tree1 -> right = mergeBinaryTrees(tree1->right, tree2);
+    }else if (tree1 == nullptr){
+        tree1 = new BinaryTree(tree2->value);
+        tree1->left = mergeBinaryTrees(tree1->left, tree2->left);
+        tree1->right = mergeBinaryTrees(tree1->right, tree2->right);
+    }else{
+        tree1->value = tree1->value + tree2->value;
+        tree1->left = mergeBinaryTrees(tree1->left, tree2->left);
+        tree1->right = mergeBinaryTrees(tree1->right, tree2->right);
+    }
+    return tree1;
+}
+
